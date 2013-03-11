@@ -83,17 +83,22 @@ def get_search_query():
 
 
 def display_results(search_results):
-    print ('-----------------')
-    print (Fore.CYAN + Style.BRIGHT
-        + '     Results     '
-        + Style.RESET_ALL + Fore.RESET)
-    print ('-----------------')
+    #print ('-----------------')
+    #print (Fore.CYAN + Style.BRIGHT
+    #       + '     Results     '
+    #       + Style.RESET_ALL + Fore.RESET)
+    #print ('-----------------')
 
     for item in search_results:
-        stat_string = Fore.MAGENTA + 'Size: ' + Fore.RESET + item.filesize
-        stat_string += Fore.MAGENTA + ' - Files: ' + Fore.RESET + item.files
-        stat_string += Fore.MAGENTA + ' - S/L: ' + Fore.RESET
-        stat_string += item.seeders + Fore.YELLOW + '/' + Fore.RESET + item.leechers
+        stat_string = Fore.MAGENTA + 'Size: '
+        + Fore.RESET + item.filesize
+        + Fore.BLUE + Style.DIM + ' - ' + Style.NORMAL
+        + Fore.MAGENTA + 'Files: ' + Fore.RESET + item.files
+        + Fore.BLUE + Style.DIM + ' - ' + Style.NORMAL
+        + Fore.MAGENTA + 'S/L: '
+        + Fore.RESET + item.seeders
+        + Fore.YELLOW + '/'
+        + Fore.RESET + item.leechers
 
         print (Fore.GREEN + item.title)
         print (stat_string)
