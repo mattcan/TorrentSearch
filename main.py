@@ -1,6 +1,6 @@
 from __future__ import absolute_import, print_function, unicode_literals
 import sys
-from ItemCollection import IsoHuntSearch
+from ItemCollection import IsoHuntSearch, KickassSearch
 from colorama import Fore, Style
 
 current_query = ''
@@ -10,7 +10,7 @@ there_be_results = False
 def main():
     if len(sys.argv) > 1:
         query = ' '.join(sys.argv[1:])
-        search = IsoHuntSearch(query)
+        search = KickassSearch(query)
         display_results(search.results)
     else:
         print ('Incorrect usage. Please use the format: hunt <search term>')

@@ -32,3 +32,29 @@ class IsoHuntItem(SearchItem):
         self.seeders = str(item['Seeds'])
         self.leechers = str(item['leechers'])
         self.link = item['link'].replace('\\', '')
+
+
+class PirateBayItem(SearchItem):
+    """Builds a Search Item from TPB request data"""
+
+    def __init__(self, item):
+        """item is an array of the torrent data"""
+        pass
+
+
+class KickassItem(SearchItem):
+    """Builds a search item that is kick ass"""
+
+    def __init__(self, item, base_url):
+        """item is html string to parse"""
+        soup = BeautifulSoup(item.encode(), "lxml")
+
+        torrentName = soup.find('div', 'torrentname')
+
+        self.title = torrentName.find('a', 'normalgrey').text
+        self.category = 'N/A'
+        self.filesize = soup.find('td', 'nobr').text
+        self.files = soup.find('td', 'nobr').next_sibling.next_sibling.string
+        self.seeders = soup.find('td', 'green').text
+        self.leechers = soup.find('td', 'red').text
+        self.link = base_url + torrentName.find('a', 'torType')['href']
