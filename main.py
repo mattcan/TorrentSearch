@@ -2,20 +2,30 @@ from __future__ import absolute_import, print_function, unicode_literals
 import sys
 from ItemCollection import IsoHuntSearch, KickassSearch
 from colorama import Fore, Style
-
-current_query = ''
-there_be_results = False
+from operator import attrgetter
 
 
 def main():
     if len(sys.argv) > 1:
         query = ' '.join(sys.argv[1:])
-        search = KickassSearch(query)
-        display_results(search.results)
+        search = search_results(query)
+        display_results(search)
     else:
         print ('Incorrect usage. Please use the format: hunt <search term>')
 
     return
+
+
+def search_results(query_string):
+    final_results = []
+    final_results.extend(IsoHuntSearch(query_string).results)
+    final_results.extend(KickassSearch(query_string).results)
+
+    sorted_results = sorted(final_results,
+                            key=attrgetter('seeders'),
+                            reverse=True)
+
+    return sorted_results[0:9]
 
 
 def display_results(search_results):
@@ -29,9 +39,9 @@ def display_results(search_results):
                        + Fore.MAGENTA + 'Files: ' + Fore.RESET + item.files
                        + Fore.BLUE + Style.DIM + ' - ' + Style.NORMAL
                        + Fore.MAGENTA + 'S/L: '
-                       + Fore.RESET + item.seeders
+                       + Fore.RESET + str(item.seeders)
                        + Fore.YELLOW + '/'
-                       + Fore.RESET + item.leechers)
+                       + Fore.RESET + str(item.leechers))
 
         print (Fore.GREEN + item.title)
         print (stat_string)
