@@ -1,6 +1,6 @@
-# TorrentSearch
+# Torrent Search
 
-A command line torrent searching tool.
+Find torrents from your command line by quickly searching across a variety of tracking sites!
 
 ## What for?
 
