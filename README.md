@@ -31,12 +31,13 @@ sudo python setup.py install
 Now clone the source:
 ~~~
 cd ~/Sources
-git clone xx.xx
+git clone https://github.com/mattcan/TorrentSearch.git
 ~~~
 
 ## Usage
 
 Search for an Ubuntu iso?
 ~~~
+cd ~/Sources/TorrentSearch
 python main.py ubuntu
 ~~~
