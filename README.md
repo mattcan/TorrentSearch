@@ -1,3 +1,5 @@
+*Project is no longer maintained. Please reach out to [@mattcan](https://github.com/mattcan) if you would like to take ownership.*
+
 # Torrent Search
 
 Find torrents from your command line by quickly searching across a variety of tracking sites!
